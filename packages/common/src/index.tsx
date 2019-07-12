@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         width: '100%',
-        maxWidth: '425px',
+        maxWidth: 425,
         backgroundColor: '#F5FCFF',
     },
 })

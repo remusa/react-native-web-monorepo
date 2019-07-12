@@ -1,10 +1,12 @@
+import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 interface Props {
     exercise: string
     repsAndWeight: string
     sets: string[]
+    onSetPress: (index: number) => void
 }
 
 const styles = StyleSheet.create({
@@ -15,7 +17,9 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        padding: 8,
+        flexDirection: 'column',
+        padding: 10,
+        marginBottom: 10,
     },
     topRow: {
         flexDirection: 'row',
@@ -27,60 +31,73 @@ const styles = StyleSheet.create({
     bottomRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 16,
+        marginTop: 14,
     },
     circle: {
-        borderRadius: 100,
-        backgroundColor: '#8fb299',
-        padding: 15,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        backgroundColor: '#8FB299',
     },
     whiteText: {
         color: '#fff',
     },
     circleText: {
         fontSize: 16,
+        margin: 'auto',
     },
-    greyText: {
-        color: 'grey',
+    grayText: {
+        color: '#655252',
     },
     fadedBackground: {
-        backgroundColor: '#b2a1a1',
+        backgroundColor: '#B2A1A1',
     },
 })
 
-export const WorkoutCard: React.FC<Props> = ({ exercise, repsAndWeight, sets }) => {
-    return (
-        <View style={styles.card}>
-            <View style={styles.topRow}>
-                <Text style={styles.topRowText}>{exercise}</Text>
-                <Text>{repsAndWeight}</Text>
-            </View>
+export const WorkoutCard: React.FC<Props> = observer(
+    ({ exercise, repsAndWeight, sets, onSetPress }) => {
+        return (
+            <View style={styles.card}>
+                <View style={styles.topRow}>
+                    <Text style={styles.topRowText}>{exercise}</Text>
+                    <Text>{repsAndWeight}</Text>
+                </View>
 
-            <View style={styles.bottomRow}>
-                {sets.map((set, index) => {
-                    if (set === 'x') {
+                <View style={styles.bottomRow}>
+                    {sets.map((set, index) => {
+                        if (set === 'x') {
+                            return (
+                                <View
+                                    style={[styles.circle, styles.fadedBackground]}
+                                    key={set + index}
+                                >
+                                    <Text style={[styles.grayText, styles.circleText]}>X</Text>
+                                </View>
+                            )
+                        }
+
+                        if (set === '') {
+                            return (
+                                <TouchableOpacity
+                                    onPress={() => onSetPress(index)}
+                                    style={[styles.circle, styles.fadedBackground]}
+                                    key={set + index}
+                                />
+                            )
+                        }
+
                         return (
-                            <View style={[styles.circle, styles.fadedBackground]} key={set + index}>
-                                <Text style={[styles.circleText, styles.greyText]}>X</Text>
-                            </View>
+                            <TouchableOpacity
+                                onPress={() => onSetPress(index)}
+                                style={styles.circle}
+                                key={set + index}
+                            >
+                                <Text style={[styles.whiteText, styles.circleText]}>{set}</Text>
+                            </TouchableOpacity>
                         )
-                    }
-
-                    if (set === '') {
-                        return (
-                            <View style={[styles.circle, styles.fadedBackground]} key={set + index}>
-                                {/* <Text style={styles.whiteText} /> */}
-                            </View>
-                        )
-                    }
-
-                    return (
-                        <View style={styles.circle} key={set + index}>
-                            <Text style={[styles.whiteText, styles.circleText]}>{set}</Text>
-                        </View>
-                    )
-                })}
+                    })}
+                </View>
             </View>
-        </View>
-    )
-}
+        )
+    }
+)

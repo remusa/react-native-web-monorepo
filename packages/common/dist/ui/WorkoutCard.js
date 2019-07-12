@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var mobx_react_lite_1 = require("mobx-react-lite");
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var styles = react_native_1.StyleSheet.create({
@@ -13,7 +14,9 @@ var styles = react_native_1.StyleSheet.create({
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        padding: 8,
+        flexDirection: 'column',
+        padding: 10,
+        marginBottom: 10,
     },
     topRow: {
         flexDirection: 'row',
@@ -25,28 +28,30 @@ var styles = react_native_1.StyleSheet.create({
     bottomRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 16,
+        marginTop: 14,
     },
     circle: {
-        borderRadius: 100,
-        backgroundColor: '#8fb299',
-        padding: 15,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        backgroundColor: '#8FB299',
     },
     whiteText: {
         color: '#fff',
     },
     circleText: {
         fontSize: 16,
+        margin: 'auto',
     },
-    greyText: {
-        color: 'grey',
+    grayText: {
+        color: '#655252',
     },
     fadedBackground: {
-        backgroundColor: '#b2a1a1',
+        backgroundColor: '#B2A1A1',
     },
 });
-exports.WorkoutCard = function (_a) {
-    var exercise = _a.exercise, repsAndWeight = _a.repsAndWeight, sets = _a.sets;
+exports.WorkoutCard = mobx_react_lite_1.observer(function (_a) {
+    var exercise = _a.exercise, repsAndWeight = _a.repsAndWeight, sets = _a.sets, onSetPress = _a.onSetPress;
     return (react_1.default.createElement(react_native_1.View, { style: styles.card },
         react_1.default.createElement(react_native_1.View, { style: styles.topRow },
             react_1.default.createElement(react_native_1.Text, { style: styles.topRowText }, exercise),
@@ -54,12 +59,12 @@ exports.WorkoutCard = function (_a) {
         react_1.default.createElement(react_native_1.View, { style: styles.bottomRow }, sets.map(function (set, index) {
             if (set === 'x') {
                 return (react_1.default.createElement(react_native_1.View, { style: [styles.circle, styles.fadedBackground], key: set + index },
-                    react_1.default.createElement(react_native_1.Text, { style: [styles.circleText, styles.greyText] }, "X")));
+                    react_1.default.createElement(react_native_1.Text, { style: [styles.grayText, styles.circleText] }, "X")));
             }
             if (set === '') {
-                return (react_1.default.createElement(react_native_1.View, { style: [styles.circle, styles.fadedBackground], key: set + index }));
+                return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: function () { return onSetPress(index); }, style: [styles.circle, styles.fadedBackground], key: set + index }));
             }
-            return (react_1.default.createElement(react_native_1.View, { style: styles.circle, key: set + index },
+            return (react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: function () { return onSetPress(index); }, style: styles.circle, key: set + index },
                 react_1.default.createElement(react_native_1.Text, { style: [styles.whiteText, styles.circleText] }, set)));
         }))));
-};
+});

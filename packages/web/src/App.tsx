@@ -1,3 +1,3 @@
-import { App } from '@wow/common';
+import { App } from '@wow/common'
 
-export default App;
+export default App

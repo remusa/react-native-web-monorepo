@@ -1,4 +1,3 @@
-import { observable } from 'mobx'
 import { createContext } from 'react'
 
 type WorkoutDay = 'a' | 'b'

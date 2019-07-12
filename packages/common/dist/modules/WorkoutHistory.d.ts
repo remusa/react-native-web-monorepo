@@ -1,5 +1,6 @@
 import React from 'react';
-interface Props {
+import { RouteComponentProps } from 'react-router';
+interface Props extends RouteComponentProps {
 }
 export declare const WorkoutHistory: React.FC<Props>;
 export {};

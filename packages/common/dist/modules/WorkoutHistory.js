@@ -11,7 +11,8 @@ var mobx_react_lite_1 = require("mobx-react-lite");
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var RootStore_1 = require("../stores/RootStore");
-exports.WorkoutHistory = mobx_react_lite_1.observer(function () {
+exports.WorkoutHistory = mobx_react_lite_1.observer(function (_a) {
+    var history = _a.history;
     var rootStore = react_1.useContext(RootStore_1.RootStoreContext);
     return (react_1.default.createElement(react_native_1.View, null,
         react_1.default.createElement(react_native_1.Text, null, "Workout History page"),
@@ -35,6 +36,6 @@ exports.WorkoutHistory = mobx_react_lite_1.observer(function () {
                     sets: ['', '', '', '', ''],
                     weight: 360,
                 });
-                rootStore.routerStore.screen = 'CurrentWorkout';
+                history.push('/current-workout');
             } })));
 });

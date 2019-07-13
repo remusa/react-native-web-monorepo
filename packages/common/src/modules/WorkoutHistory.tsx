@@ -1,11 +1,11 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
-import { RouteComponentProps } from 'react-router';
-import { RootStoreContext } from '../stores/RootStore';
-import { CurrentExercise } from '../stores/WorkoutStore';
-import { Fab } from '../ui/Fab';
-import HistoryCard from '../ui/HistoryCard';
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
+import { FlatList, StyleSheet, View } from 'react-native'
+import { RouteComponentProps } from 'react-router'
+import { RootStoreContext } from '../stores/RootStore'
+import { CurrentExercise } from '../stores/WorkoutStore'
+import { Fab } from '../ui/Fab'
+import HistoryCard from '../ui/HistoryCard'
 
 interface Props extends RouteComponentProps {}
 
@@ -74,15 +74,14 @@ export const WorkoutHistory: React.FC<Props> = observer(({ history }) => {
             />
 
             <Fab
-                title="create workout"
                 onPress={() => {
                     if (!rootStore.workoutStore.hasCurrentWorkout) {
                         const {
-                            currentSquat,
-                            currentBenchPress,
-                            currentOverheadPress,
-                            currentDeadlift,
                             currentBarbellRow,
+                            currentBenchPress,
+                            currentDeadlift,
+                            currentSquat,
+                            currentOverheadPress,
                         } = rootStore.workoutStore
                         const emptySets = ['', '', '', '', '']
 
@@ -106,7 +105,7 @@ export const WorkoutHistory: React.FC<Props> = observer(({ history }) => {
                                     exercise: 'Deadlift',
                                     numSets: 1,
                                     reps: 5,
-                                    sets: ['', 'X', 'X', 'X', 'X'],
+                                    sets: ['', 'x', 'x', 'x', 'x'],
                                     weight: currentDeadlift,
                                 }
                             )

@@ -64,9 +64,9 @@ exports.WorkoutHistory = mobx_react_lite_1.observer(function (_a) {
                     item.length < 3 ? react_1.default.createElement(react_native_1.View, { style: styles.cardContainer }) : null,
                     item.length < 2 ? react_1.default.createElement(react_native_1.View, { style: styles.cardContainer }) : null));
             }, data: rows, keyExtractor: function (item) { return item.reduce(function (pv, cv) { return pv + ' ' + cv.date; }, ''); } }),
-        react_1.default.createElement(Fab_1.Fab, { title: "create workout", onPress: function () {
+        react_1.default.createElement(Fab_1.Fab, { onPress: function () {
                 if (!rootStore.workoutStore.hasCurrentWorkout) {
-                    var _a = rootStore.workoutStore, currentSquat = _a.currentSquat, currentBenchPress = _a.currentBenchPress, currentOverheadPress = _a.currentOverheadPress, currentDeadlift = _a.currentDeadlift, currentBarbellRow = _a.currentBarbellRow;
+                    var _a = rootStore.workoutStore, currentBarbellRow = _a.currentBarbellRow, currentBenchPress = _a.currentBenchPress, currentDeadlift = _a.currentDeadlift, currentSquat = _a.currentSquat, currentOverheadPress = _a.currentOverheadPress;
                     var emptySets = ['', '', '', '', ''];
                     if (rootStore.workoutStore.lastWorkoutType === 'b') {
                         rootStore.workoutStore.currentExercises.push({
@@ -85,7 +85,7 @@ exports.WorkoutHistory = mobx_react_lite_1.observer(function (_a) {
                             exercise: 'Deadlift',
                             numSets: 1,
                             reps: 5,
-                            sets: ['', 'X', 'X', 'X', 'X'],
+                            sets: ['', 'x', 'x', 'x', 'x'],
                             weight: currentDeadlift,
                         });
                         rootStore.workoutStore.currentSquat += 5;

@@ -7,14 +7,14 @@ var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var styles = react_native_1.StyleSheet.create({
     card: {
-        borderRadius: 3,
+        flexDirection: 'column',
         backgroundColor: '#fff',
+        borderRadius: 3,
+        padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        flexDirection: 'column',
-        padding: 10,
     },
 });
 exports.Card = function (_a) {

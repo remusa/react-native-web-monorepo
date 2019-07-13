@@ -7,14 +7,14 @@ interface Props {
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius: 3,
+        flexDirection: 'column',
         backgroundColor: '#fff',
+        borderRadius: 3,
+        padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        flexDirection: 'column',
-        padding: 10,
     },
 })
 

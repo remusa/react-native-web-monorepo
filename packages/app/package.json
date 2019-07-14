@@ -6,13 +6,15 @@
         "start": "node node_modules/react-native/local-cli/cli.js start",
         "ios": "react-nastive run-ios",
         "android": "react-native run-android",
-        "test": "jest"
+        "test": "jest",
+        "wsl:symlink": "wml add ../common ./node_modules/@wow/common && wml start"
     },
     "dependencies": {
         "react": "^16.8.2",
         "react-native": "^0.59.0-rc.1"
     },
     "devDependencies": {
+        "@wow/common": "1.0.0",
         "@types/jest": "^24.0.5",
         "@types/react": "^16.8.3",
         "@types/react-native": "^0.57.36",
@@ -27,5 +29,13 @@
     },
     "jest": {
         "preset": "react-native"
+    },
+    "workspaces": {
+        "nohoist": [
+            "react-native",
+            "react-native/**",
+            "react",
+            "react/**"
+        ]
     }
 }
